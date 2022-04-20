@@ -1,0 +1,22 @@
+class Solution {
+    public List<String> buildArray(int[] target, int n) {
+        
+        List<String> ops = new ArrayList<>();
+        int input = 1;
+        for(int i : target)
+        {
+            while(input < i)
+            {
+                ops.add("Push");
+                ops.add("Pop");
+                input++;
+            }
+            ops.add("Push");
+            input++;
+        }
+        
+        return ops;
+    }
+}
+
+//https://www.youtube.com/watch?v=LAnQM8ygubA&t=25s
