@@ -1,0 +1,28 @@
+class Solution {
+    public boolean backspaceCompare(String s, String t) {
+        
+        return build(s).equals(build(t));
+        
+    }
+    
+   public String build(String S)
+   {
+       Stack<Character> ans = new Stack<>();
+       
+       for(char c : S.toCharArray())
+       {
+           if(c != '#')
+           ans.push(c);
+           
+           else if(!ans.isEmpty())
+           {
+               ans.pop();
+           }
+       }
+       
+       return String.valueOf(ans);
+   }
+}
+
+
+//https://leetcode.com/problems/backspace-string-compare/solution/
