@@ -1,0 +1,56 @@
+class Solution {
+    public String decodeString(String s) {
+        
+        Stack<Integer> numstack = new Stack<>();
+        Stack<StringBuilder> strstack = new Stack<>();
+        
+        StringBuilder str = new StringBuilder();
+        
+        int num = 0;
+        
+        for(char c : s.toCharArray())
+        {
+            // 4 types of char
+           // digit,  alphabet, '[' , ']'
+            
+            if(c >= '0' && c <=  '9')  // Character.isDigit()
+            {
+                num = num*10 + c - '0';
+            }
+            
+            else if( c == '[')
+            {
+                strstack.push(str);
+                str = new StringBuilder();
+                
+                numstack.push(num);
+                num = 0;
+            }
+            
+            else if(c == ']')
+            {
+                StringBuilder temp = str;
+                str = strstack.pop();
+                
+                int count = numstack.pop();
+                
+                while(count-- > 0)
+                {
+                    str = str.append(temp);
+                }
+            }
+            
+            else  // alphabet
+            {
+                str.append(c);
+            }
+        }
+        
+        
+        return str.toString();
+        
+    }
+}
+
+
+//https://www.youtube.com/watch?v=bjprC1Pvu2Y
