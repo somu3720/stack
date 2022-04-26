@@ -1,0 +1,32 @@
+class Solution {
+    public int maxWidthRamp(int[] nums) {
+        
+        Stack<Integer> st = new Stack<>();
+        
+        // push element in decreasing order including minimum element of nums
+        
+        for(int i = 0; i < nums.length; i++)
+        {
+            if(st.isEmpty() || nums[st.peek()] > nums[i])
+            {
+                st.push(i);
+            }
+        }
+        
+        int ans = 0;
+        int n = nums.length;
+        
+        for(int i = n - 1; i >= 0; i--)
+        {
+            while(!st.isEmpty() && nums[st.peek()] <= nums[i] )
+            {
+                ans = Math.max(ans, i - st.peek());
+                st.pop();
+            }
+        }
+        
+        return ans;
+    }
+}
+
+//https://www.youtube.com/watch?v=_TkAgiKixAk
